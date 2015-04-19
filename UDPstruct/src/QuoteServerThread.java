@@ -30,7 +30,7 @@ public class QuoteServerThread extends Thread {
 		while(moreQuotes){
 			System.out.println("wating for client");
 			try{
-				byte[] buf = new byte[256];
+				byte[] buf = new byte[CONFIG.BUF_LEN];
 				
 				// receive request
 				DatagramPacket packet = new DatagramPacket(buf, buf.length);
@@ -48,7 +48,7 @@ public class QuoteServerThread extends Thread {
 				
 				InetAddress address = packet.getAddress();
 				int port = packet.getPort();
-				packet = new DatagramPacket(buf, buf.length, address, port);
+				packet = new DatagramPacket(buf, buf.length, address, CONFIG.UDP_PORT);
 				socket.send(packet);
 				
 			} catch(IOException e){

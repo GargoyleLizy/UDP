@@ -13,7 +13,7 @@ public class QuoteClient {
 		DatagramSocket socket = new DatagramSocket();
 		
 		//send request
-		byte[] buf = new byte[256];
+		byte[] buf = new byte[CONFIG.BUF_LEN];
 		InetAddress address = InetAddress.getByName(args[0]);
 		DatagramPacket packet = new DatagramPacket(buf, buf.length,address, CONFIG.UDP_PORT);
 		socket.send(packet);
