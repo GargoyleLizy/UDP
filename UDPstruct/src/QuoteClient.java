@@ -3,6 +3,7 @@ import java.net.*;
 
 
 public class QuoteClient {
+	
 	public static void main(String[] args) throws IOException{
 		if(args.length  != 1){
 			System.out.println("Usage: java Qutote Clinet <hostname>");
@@ -19,12 +20,12 @@ public class QuoteClient {
 		socket.send(packet);
 		
 		// get response 
-		packet = new DatagramPacket(buf, buf.length);
-		socket.receive(packet);
+		//packet = new DatagramPacket(buf, buf.length);
+		//socket.receive(packet);
 		
 		// display response
-		String received = new String(packet.getData(), 0, packet.getLength());
-		System.out.println("Quote of the moment:" + received);
+		//String received = new String(packet.getData(), 0, packet.getLength());
+		//System.out.println("Quote of the moment:" + received);
 	}
 	
 }
