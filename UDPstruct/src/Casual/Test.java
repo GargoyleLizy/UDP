@@ -28,8 +28,16 @@ public class Test {
 			simp_sender.push_cmd(cmd);
 			System.out.println("we input: " + cmd);
 			
-			
-			
+			if(simp_receiver.exist_cmd()){
+				String r_cmd = null;	
+				r_cmd = simp_receiver.pull_cmd();
+				System.out.println("sever get: "+r_cmd);
+			}else{
+				System.out.println("not now");
+			}
+			//String r_cmd = null;	
+			//r_cmd = simp_receiver.pull_cmd();
+			//System.out.println("sever get: "+r_cmd);
 		}while(cmd != "end\n");
 	}
 	

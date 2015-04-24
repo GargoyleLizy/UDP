@@ -27,21 +27,23 @@ public class SimpleServerThread extends Thread {
 	public void run(){
 		System.out.println("Server running, waiting fro client");
 		String ip_and_cmd = null;
-		
-		try{
-			byte[] buf = new byte[CONFIG.BUF_LEN];
-			DatagramPacket packet = new DatagramPacket(buf, buf.length);
-			socket.receive(packet);
-			
-			String cmd = new String(packet.getData(), 0, packet.getLength());
-			InetAddress address = packet.getAddress();
-			ip_and_cmd = address.toString() + " " +cmd; 
-			
-			// For Test
-			System.out.println("server get:"+ ip_and_cmd);
-			cmd_que.add(ip_and_cmd);
-		}catch(IOException e){
-			System.out.println("server error");
+		while(true){
+			try{
+				byte[] buf = new byte[CONFIG.BUF_LEN];
+				DatagramPacket packet = new DatagramPacket(buf, buf.length);
+				socket.receive(packet);
+				
+				String cmd = new String(packet.getData(), 0, packet.getLength());
+				InetAddress address = packet.getAddress();
+				ip_and_cmd = address.toString() + " " +cmd; 
+				
+				// For Test
+				System.out.println("serverthread get:"+ ip_and_cmd);
+				cmd_que.add(ip_and_cmd);
+			}catch(IOException e){
+				System.out.println("server error");
+			}
 		}
+		
 	}
 }

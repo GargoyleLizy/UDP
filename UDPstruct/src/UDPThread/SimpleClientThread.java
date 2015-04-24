@@ -54,8 +54,11 @@ public class SimpleClientThread extends Thread{
 					// test!!!!
 					//System.out.println("there is no cmd in queue");
 					sleep(CONFIG.SIMPLE_INTV);
-				}catch(InterruptedException e){
+				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
 				}
+				
 			}
 			else {
 				
@@ -80,13 +83,14 @@ public class SimpleClientThread extends Thread{
 	protected void broadcast(byte[] buf, DatagramSocket socket) throws  IOException{
 		Iterator<String> ip_iter = ip_group.iterator();
 		
-		if(ip_iter.hasNext()){
+		while(ip_iter.hasNext()){
 			InetAddress address = InetAddress.getByName(ip_iter.next());
 			DatagramPacket packet = new DatagramPacket(buf,buf.length,address,CONFIG.UDP_PORT);
 			socket.send(packet);
 			// For debug
-			System.out.println("client send:" + buf.toString()); 
+			//System.out.println("client send:" + buf.toString()); 
 		}
+		System.out.println("broadcast end once");
 	}
 	
 }
